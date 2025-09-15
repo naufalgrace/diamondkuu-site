@@ -1,0 +1,32 @@
+{
+  "products": [
+    {
+      "name": "Mobile Legends",
+      "category": "game",
+      "image": "/uploads/ml.jpg",
+      "status": "active",
+      "variants": [
+        {
+          "nominal": "86 Diamonds",
+          "price": 20000
+        },
+        {
+          "nominal": "172 Diamonds",
+          "price": 39000
+        }
+      ]
+    },
+    {
+      "name": "Netflix Premium",
+      "category": "apk",
+      "image": "/uploads/netflix.jpg",
+      "status": "active",
+      "variants": [
+        {
+          "nominal": "1 Bulan",
+          "price": 60000
+        }
+      ]
+    }
+  ]
+}

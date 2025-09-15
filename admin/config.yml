@@ -1,0 +1,73 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+collections:
+  # Single file: Products
+  - name: "products"
+    label: "Products"
+    format: "json"
+    files:
+      - name: "products_data"
+        label: "Products Data"
+        file: "content/products.json"
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            collapsed: true
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Category", name: "category", widget: "select", options: ["game","apk"], default: "game" }
+              - { label: "Image", name: "image", widget: "image", allow_multiple: false }
+              - { label: "Status", name: "status", widget: "select", options: ["active","inactive"], default: "active" }
+              - label: "Variants"
+                name: "variants"
+                widget: "list"
+                collapsed: true
+                fields:
+                  - { label: "Nominal", name: "nominal", widget: "string" }
+                  - { label: "Price (Rp)", name: "price", widget: "number", value_type: "int", min: 0 }
+
+  # Single file: Promos
+  - name: "promos"
+    label: "Promos"
+    format: "json"
+    files:
+      - name: "promos_data"
+        label: "Promos Data"
+        file: "content/promos.json"
+        fields:
+          - label: "Promos"
+            name: "promos"
+            widget: "list"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category Scope", name: "categoryScope", widget: "select", options: ["all","game","apk"], default: "all" }
+              - { label: "Product Name (optional)", name: "productName", widget: "string", required: false }
+              - { label: "Nominal Filter (optional)", name: "nominalFilter", widget: "string", required: false }
+              - { label: "Discount Type", name: "discountType", widget: "select", options: ["percent","amount"], default: "percent" }
+              - { label: "Discount Value", name: "discountValue", widget: "number", value_type: "int", min: 0 }
+              - { label: "Start Date", name: "startDate", widget: "datetime", time_format: false }
+              - { label: "End Date", name: "endDate", widget: "datetime", time_format: false, required: false }
+              - { label: "Active", name: "isActive", widget: "boolean", default: true }
+              - { label: "Banner URL (optional)", name: "bannerURL", widget: "string", required: false }
+
+  # Single file: Settings
+  - name: "settings"
+    label: "Settings"
+    format: "json"
+    files:
+      - name: "store"
+        label: "Store Settings"
+        file: "content/store.json"
+        fields:
+          - { label: "Store Name", name: "storeName", widget: "string" }
+          - { label: "Logo", name: "logo", widget: "image", allow_multiple: false }
+          - { label: "WhatsApp Link", name: "whatsapp", widget: "string", required: false }
+          - { label: "Email", name: "email", widget: "string", required: false }
+          - { label: "Address", name: "address", widget: "text", required: false }
