@@ -5,19 +5,30 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Admin</title>
 
-    <!-- Netlify Identity (wajib agar bisa login) -->
+    <!-- Hindari 404 favicon -->
+    <link rel="icon" href="data:," />
+
+    <!-- Netlify Identity (wajib untuk login) -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- Pastikan Decap membaca config dari /admin/config.yml -->
+    <script>
+      window.CMS_CONFIG_PATH = 'config.yml';
+    </script>
+  </head>
+  <body>
+    <!-- Target root agar Decap bisa mount UI (mencegah appendChild null) -->
+    <div id="nc-root"></div>
 
     <!-- Decap CMS -->
     <script src="https://unpkg.com/decap-cms@3.3.1/dist/decap-cms.js"></script>
-  </head>
-  <body>
+
+    <!-- Auto reload setelah login -->
     <script>
-      // Auto reload setelah login supaya dashboard tampil
       if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", (user) => {
+        window.netlifyIdentity.on('init', (user) => {
           if (!user) {
-            window.netlifyIdentity.on("login", () => document.location.reload());
+            window.netlifyIdentity.on('login', () => document.location.reload());
           }
         });
       }
