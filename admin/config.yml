@@ -2,80 +2,33 @@ backend:
   name: git-gateway
   branch: main
 
-local_backend: false
-
-media_folder: "static/uploads"     # tempat file gambar disimpan di repo
-public_folder: "/static/uploads"   # URL gambar di situs
+media_folder: "static/uploads"   # tempat file gambar disimpan di repo
+public_folder: "/static/uploads" # URL gambar di situs
 
 locale: "id"
 
 collections:
-  # KATALOG PRODUK
-  - name: "katalog"
+  - name: "products"
     label: "Katalog Produk"
     label_singular: "Produk"
     files:
       - name: "produk"
         label: "Daftar Produk (Games + APK)"
-        file: "isi/produk.json"
+        file: "content/products.json"
         format: "json"
         fields:
-          - label: "Produk"
-            name: "items"
-            widget: "list"
-            summary: "{{fields.name}} ({{fields.category}}) – Rp {{fields.price}}"
-            fields:
-              - { label: "ProductID", name: "productId", widget: "string" }
-              - { label: "Name", name: "name", widget: "string" }
-              - { label: "Category", name: "category", widget: "string" }
-              - { label: "Nominal", name: "nominal", widget: "string", required: false }
-              - { label: "Price (Rp)", name: "price", widget: "number", value_type: "int", min: 0 }
-              - { label: "Image URL", name: "imageURL", widget: "string", required: false }
-              - { label: "Status", name: "status", widget: "select", options: ["Active","Inactive"], default: "Active" }
-              - { label: "Notes", name: "notes", widget: "string", required: false }
+          - { label: "Nama", name: "name", widget: "string" }
+          - { label: "Harga", name: "price", widget: "number" }
+          - { label: "Gambar", name: "image", widget: "image" }
+          - { label: "Kategori", name: "category", widget: "string" }
 
-  # PROMO
-  - name: "promo"
+  - name: "promos"
     label: "Promo"
     files:
-      - name: "promos"
+      - name: "promo"
         label: "Daftar Promo"
-        file: "isi/promos.json"
+        file: "content/promos.json"
         format: "json"
         fields:
-          - label: "Promo"
-            name: "items"
-            widget: "list"
-            summary: "{{fields.title}} ({{fields.categoryScope}})"
-            fields:
-              - { label: "PromoID", name: "promoId", widget: "string" }
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Category Scope", name: "categoryScope", widget: "string" }
-              - { label: "Banner URL", name: "bannerURL", widget: "string", required: false }
-              - { label: "Notes", name: "notes", widget: "string", required: false }
-
-  # INFO TOKO / IDENTITAS
-  - name: "toko"
-    label: "Informasi Toko"
-    files:
-      - name: "store"
-        label: "Profil & Kebijakan Toko"
-        file: "isi/toko.json"
-        format: "json"
-        fields:
-          - label: "Store"
-            name: "store"
-            widget: "object"
-            fields:
-              - { label: "Nama Toko", name: "name", widget: "string" }
-              - { label: "Email", name: "email", widget: "string" }
-              - { label: "WhatsApp", name: "whatsapp", widget: "string", required: false }
-              - { label: "Jam Kerja", name: "working_hours", widget: "string", required: false }
-              - { label: "Alamat", name: "address", widget: "text", required: false }
-              - label: "Kebijakan"
-                name: "policies"
-                widget: "object"
-                fields:
-                  - { label: "Layanan", name: "service", widget: "text", required: false }
-                  - { label: "Refund", name: "refund", widget: "text", required: false }
-                  - { label: "Privasi", name: "privacy", widget: "text", required: false }
+          - { label: "Judul", name: "title", widget: "string" }
+          - { label: "Deskripsi", name: "description", widget: "text" }
