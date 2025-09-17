@@ -1,16 +1,12 @@
 {
-  "promos": [
+  "items": [
     {
-      "title": "Weekend Boost 5%",
-      "categoryScope": "game",
-      "productName": "",
-      "nominalFilter": "",
-      "discountType": "percent",
-      "discountValue": 5,
-      "startDate": "2025-09-20",
-      "endDate": "2025-09-22",
-      "isActive": true,
-      "bannerURL": ""
+      "id": "promo-september",
+      "title": "Promo September",
+      "description": "Diskon 10% untuk semua produk game",
+      "active": true,
+      "start_date": "2025-09-01",
+      "end_date": "2025-09-30"
     }
   ]
 }
