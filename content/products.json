@@ -1,32 +1,37 @@
 {
-  "products": [
+  "items": [
     {
+      "id": "ml-86",
       "name": "Mobile Legends",
+      "price": 20000,
       "category": "game",
+      "description": "86 Diamonds untuk Mobile Legends",
       "image": "/uploads/ml.jpg",
-      "status": "active",
-      "variants": [
-        {
-          "nominal": "86 Diamonds",
-          "price": 20000
-        },
-        {
-          "nominal": "172 Diamonds",
-          "price": 39000
-        }
-      ]
+      "stock": 100,
+      "active": true,
+      "tags": ["mobile legends", "diamonds"]
     },
     {
+      "id": "ml-172",
+      "name": "Mobile Legends",
+      "price": 39000,
+      "category": "game",
+      "description": "172 Diamonds untuk Mobile Legends",
+      "image": "/uploads/ml.jpg",
+      "stock": 100,
+      "active": true,
+      "tags": ["mobile legends", "diamonds"]
+    },
+    {
+      "id": "netflix-premium",
       "name": "Netflix Premium",
+      "price": 120000,
       "category": "apk",
+      "description": "Langganan Netflix Premium 1 bulan",
       "image": "/uploads/netflix.jpg",
-      "status": "active",
-      "variants": [
-        {
-          "nominal": "1 Bulan",
-          "price": 60000
-        }
-      ]
+      "stock": 50,
+      "active": true,
+      "tags": ["netflix", "premium"]
     }
   ]
 }
