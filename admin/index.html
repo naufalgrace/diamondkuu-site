@@ -3,33 +3,25 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Admin</title>
-
-    <!-- Hindari 404 favicon -->
-    <link rel="icon" href="data:," />
-
-    <!-- Netlify Identity (wajib untuk login) -->
+    <title>Admin • DiamondKu</title>
+    <link rel="icon" href="/favicon.ico" />
+    <!-- Netlify Identity widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-    <!-- Pastikan Decap membaca config dari /admin/config.yml -->
-    <script>
-      window.CMS_CONFIG_PATH = 'config.yml';
-    </script>
-  </head>
-  <body>
-    <!-- Target root agar Decap bisa mount UI (mencegah appendChild null) -->
-    <div id="nc-root"></div>
-
     <!-- Decap CMS -->
     <script src="https://unpkg.com/decap-cms@3.3.1/dist/decap-cms.js"></script>
-
-    <!-- Auto reload setelah login -->
+    <style>
+      html,body{height:100%} body{margin:0;background:#111}
+    </style>
+  </head>
+  <body>
     <script>
+      // Auto buka modal login kalau belum login
       if (window.netlifyIdentity) {
-        window.netlifyIdentity.on('init', (user) => {
-          if (!user) {
-            window.netlifyIdentity.on('login', () => document.location.reload());
-          }
+        window.netlifyIdentity.on("init", user => {
+          if (!user) window.netlifyIdentity.open("login");
+        });
+        window.netlifyIdentity.on("login", () => {
+          window.location.reload();
         });
       }
     </script>
