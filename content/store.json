@@ -1,7 +1,14 @@
 {
-  "storeName": "DiamondKu",
-  "logo": "/uploads/logo.png",
-  "whatsapp": "https://wa.me/6281234567890",
-  "email": "support@diamondku.com",
-  "address": "Jl. Contoh No. 123, Jakarta"
+  "store": {
+    "name": "DiamondKu",
+    "email": "support@diamondku.com",
+    "whatsapp": "+62 812-3456-7890",
+    "working_hours": "09:00 - 22:00 WIB",
+    "address": "Jakarta, Indonesia",
+    "policies": {
+      "service": "Kami menyediakan layanan top up tercepat dan termurah.",
+      "refund": "Refund berlaku jika order gagal.",
+      "privacy": "Data pelanggan aman dan tidak dibagikan."
+    }
+  }
 }
