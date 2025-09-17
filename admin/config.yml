@@ -2,24 +2,91 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/uploads"   # folder penyimpanan gambar di repo (opsional)
-public_folder: "/static/uploads" # URL publik gambar (opsional)
+media_folder: "static/uploads"     # file gambar disimpan di repo
+public_folder: "/static/uploads"   # URL gambar di situs
 
 locale: "id"
 
 collections:
-  - name: "products"
+  # ========= KATALOG PRODUK =========
+  - name: "katalog"
     label: "Katalog Produk"
-    label_singular: "Produk"
+    editor:
+      preview: false
     files:
       - name: "produk"
         label: "Daftar Produk (Games + APK)"
         file: "content/products.json"
         format: "json"
         fields:
-          - { label: "Nama",    name: "name",      widget: "string" }
-          - { label: "Harga",   name: "price",     widget: "number" }
-          - { label: "Kategori",name: "category",  widget: "string" }
-          - { label: "Gambar",  name: "imageURL",  widget: "string" }
-          - { label: "Status",  name: "status",    widget: "select", options: ["Active","Hidden"] }
-          - { label: "Catatan", name: "notes",     widget: "text", required: false }
+          - label: "Produk"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}} — Rp{{fields.price}} ({{fields.category}})"
+            fields:
+              - { label: "ID", name: "id", widget: "string", hint: "unik, misal: ml-86, ff-140" }
+              - { label: "Nama", name: "name", widget: "string" }
+              - { label: "Harga (Rp)", name: "price", widget: "number", value_type: "int", min: 0 }
+              - { label: "Kategori", name: "category", widget: "select", options: ["Mobile Legends", "Free Fire", "Genshin", "PUBG", "APK Premium", "Lainnya"] }
+              - { label: "Deskripsi", name: "description", widget: "text", required: false }
+              - { label: "Gambar", name: "image", widget: "image", allow_multiple: false }
+              - { label: "Stok", name: "stock", widget: "number", value_type: "int", min: 0, default: 100 }
+              - { label: "Aktif?", name: "active", widget: "boolean", default: true }
+              - { label: "Tag", name: "tags", widget: "list", required: false }
+
+  # ========= PROMO =========
+  - name: "promo"
+    label: "Promo"
+    editor:
+      preview: false
+    files:
+      - name: "promos"
+        label: "Daftar Promo"
+        file: "content/promos.json"
+        format: "json"
+        fields:
+          - label: "Promo"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.discount_pct}}%"
+            fields:
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Deskripsi", name: "description", widget: "text", required: false }
+              - { label: "Diskon (%)", name: "discount_pct", widget: "number", min: 1, max: 95 }
+              - { label: "Mulai", name: "start_date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
+              - { label: "Selesai", name: "end_date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
+              - { label: "Banner", name: "banner", widget: "image", required: false }
+              - { label: "Aktif?", name: "active", widget: "boolean", default: true }
+
+  # ========= PROFIL TOKO / LANDING =========
+  - name: "store"
+    label: "Profil Toko & Tampilan"
+    editor:
+      preview: false
+    files:
+      - name: "toko"
+        label: "Pengaturan Toko"
+        file: "content/store.json"
+        format: "json"
+        fields:
+          - { label: "Nama Toko", name: "name", widget: "string" }
+          - { label: "Logo", name: "logo", widget: "image", allow_multiple: false }
+          - { label: "Tagline", name: "tagline", widget: "string", required: false }
+          - { label: "WhatsApp", name: "whatsapp", widget: "string", hint: "62812xxxxxxx" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Jam Kerja", name: "hours", widget: "string", required: false }
+          - { label: "Alamat", name: "address", widget: "text", required: false }
+          - label: "Kebijakan"
+            name: "policies"
+            widget: "object"
+            fields:
+              - { label: "Layanan", name: "service", widget: "text", required: false }
+              - { label: "Refund", name: "refund", widget: "text", required: false }
+              - { label: "Privasi", name: "privacy", widget: "text", required: false }
+          - label: "Tampilan"
+            name: "theme"
+            widget: "object"
+            fields:
+              - { label: "Warna Utama", name: "primary", widget: "string", default: "#ffcc00" }
+              - { label: "Warna Teks", name: "text", widget: "string", default: "#ffffff" }
+              - { label: "Warna Latar", name: "background", widget: "string", default: "#0b0b0b" }
